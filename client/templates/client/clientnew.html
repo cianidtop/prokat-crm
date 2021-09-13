@@ -1,0 +1,27 @@
+{% extends 'main/navbar.html' %}
+{% load crispy_forms_tags %}
+{% block main_section %}
+    {% if user.is_authenticated %}
+<div class="container" >
+    <h1>Новый клиент</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="save btn btn-default">Сохранить пользователя</button>
+    </form>
+</div>
+<hr>
+<div class="container" >
+        {% load static %}
+        <embed src="{% static 'dogovor.pdf' %}" width:1000px; height:7000px;>
+</div>
+    {% endif %}
+{% endblock main_section %}
+
+{% block footer_section %}
+{% endblock footer_section %}
+
+
+
+
+

@@ -1,0 +1,145 @@
+{% extends 'main/navbar.html' %}
+{% block main_section %}
+<div class="container" >
+    {% if user.is_authenticated %}
+    {% if user.is_superuser %}
+    <h1 align="center">Оборот</h1>
+    <div style="background-color: #FFCF46;" class="jumbotron">
+    <div class="container">
+      <div class="row">
+          <div class="col-md-4">
+              <h2 align="center">{{sum_day.total_sum}}</h2>
+              <h3 align="center">Оборот за день</h3>
+          </div>
+          <div class="col-md-4">
+              <h2 align="center">{{cnt_day.total_cnt}}</h2>
+              <h3 align="center">Поездок за день</h3>
+          </div>
+          <div class="col-md-4">
+              <h2 align="center">{{cnt_day_client.total_cnt}}</h2>
+              <h3 align="center">Клиентов за день</h3>
+          </div>
+      </div>
+        <hr>
+      <div class="row">
+          <div class="col-md-4">
+              <h2 align="center">{{cash_sum_day.total_sum}}</h2>
+              <h3 align="center">Оборот за день наличка</h3>
+          </div>
+          <div class="col-md-4">
+              <h2 align="center">{{card_sum_day.total_sum}}</h2>
+              <h3 align="center">Оборот за день безнал</h3>
+          </div>
+          <div class="col-md-4">
+              <h2 align="center">{{mixed_sum_day.total_sum}}</h2>
+              <h3 align="center">Оборот за день смешанный</h3>
+          </div>
+      </div>
+        <hr>
+      <div class="row">
+          <div class="col-md-6">
+              <h3 align="center">Искра за день</h3>
+        <p align="center">{{iskra_sum_day.total_sum}}</p>
+          </div>
+          <div class="col-md-6">
+              <h3 align="center">Набережная за день</h3>
+        <p align="center">{{nab_sum_day.total_sum}}</p>
+          </div>
+      </div>
+        <div class="row">
+              <div class="col-md-3">
+                <h3 align="center">Самокаты за день</h3>
+                <p align="center">Оборот: {{sum_day_samokat.total_sum}}</p>
+              </div>
+              <div class="col-md-3">
+                <h3 align="center">Байки за день</h3>
+                <p align="center">Оборот: {{sum_day_bike.total_sum}}</p>
+              </div>
+             <div class="col-md-3">
+                <h3 align="center">Велосипеды за день</h3>
+                <p align="center">Оборот: {{sum_day_velik.total_sum}}</p>
+              </div>
+             <div class="col-md-3">
+                <h3 align="center">Машинки за день</h3>
+                <p align="center">Оборот: {{sum_day_car.total_sum}}</p>
+              </div>
+        </div>
+    </div>
+  </div>
+ <div class="row">
+          <div class="col-md-12">
+              <h1 align="center">{{sum.total_sum}}</h1>
+              <h3 align="center">Общий оборот</h3>
+          </div>
+      </div>
+    <div id="chart">
+   <embed type="image/svg+xml" src={{chart}} />
+    </div>
+    <div id="months">
+   <embed type="image/svg+xml" src={{months}} />
+    </div>
+    <div id="pie">
+   <embed type="image/svg+xml" src={{pie}} />
+    </div>
+     <div id="tech_pie">
+   <embed type="image/svg+xml" src={{tech_pie}} />
+    </div>
+    <div id="cars">
+  <embed type="image/svg+xml" src={{cars}} />
+   </div>
+    <div id="months_cars">
+  <embed type="image/svg+xml" src={{months_cars}} />
+   </div>
+    <hr>
+ <div class="row">
+      <div class="col-md-3">
+        <h3 align="center">Самокаты</h3>
+        <p align="center">Оборот: {{sum_samokat.total_sum}}</p>
+        <p align="center">Поездок: {{cnt_samokat.total_cnt}}</p>
+      </div>
+      <div class="col-md-3">
+        <h3 align="center">Байки</h3>
+        <p align="center">Оборот: {{sum_bike.total_sum}}</p>
+        <p align="center">Поездок: {{cnt_bike.total_cnt}}</p>
+      </div>
+     <div class="col-md-3">
+        <h3 align="center">Велосипеды</h3>
+        <p align="center">Оборот: {{sum_velik.total_sum}}</p>
+        <p align="center">Поездок: {{cnt_velik.total_cnt}}</p>
+      </div>
+     <div class="col-md-3">
+        <h3 align="center">Машинки</h3>
+        <p align="center">Оборот: {{sum_car.total_sum}}</p>
+        <p align="center">Поездок: {{cnt_car.total_cnt}}</p>
+      </div>
+    </div>
+    <hr>
+    <h1 align="center">Детализация</h1>
+    <div class="row">
+        <div class="col-md-3">
+        <h3 align="center">Всего клиентов</h3>
+        <p align="center">{{cnt_client.total_cnt}}</p>
+      </div>
+      <div class="col-md-3">
+        <h3 align="center">Всего поездок</h3>
+        <p align="center">{{cnt_ride.total_cnt}}</p>
+      </div>
+      <div class="col-md-3">
+        <h3 align="center">поездки Искра</h3>
+        <p align="center">{{cnt_iskra.total_cnt}}</p>
+      </div>
+     <div class="col-md-3">
+        <h3 align="center">поездки Набережная</h3>
+        <p align="center">{{cnt_nab.total_cnt}}</p>
+      </div>
+    </div>
+    {% endif %}
+    {% else %}
+        <h2>ДОСТУП К ИНФОРМАЦИИ ЗАПРЕЩЕН</h2>
+    {% endif %}
+</div>
+{% endblock main_section %}
+
+
+{% block footer_section %}
+{% endblock footer_section %}

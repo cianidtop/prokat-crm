@@ -1,0 +1,27 @@
+{% extends 'main/navbar.html' %}
+{% block main_section %}
+    {% if user.is_authenticated %}
+    <div class="container" >
+    <a href="{% url 'clientnew' %}" class="btn btn-outline-dark mr-2">Новый пользователь</a>
+        {% for el in object_list %}
+           <div class="media text-muted pt-3">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <strong class="d-block text-black">Имя: {{ el.first_name }}</strong>
+                <b>Фамилия: </b>{{ el.last_name }}
+                <b>Телефон: </b>{{ el.phone_number }}
+                     <a href="{% url 'client_detail' pk=el.id%}" class="btn btn-outline-dark mr-2">Подробнее</a>
+                </p>
+           </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <h2>ДОСТУП К ИНФОРМАЦИИ ЗАПРЕЩЕН</h2>
+    {% endif %}
+{% endblock main_section %}
+{% block footer_section %}
+{% endblock footer_section %}
+
+
+
+
+

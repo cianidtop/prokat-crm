@@ -1,0 +1,89 @@
+{% extends 'main/navbar.html' %}
+{% block main_section %}
+
+<div class="container" >
+    <div class="row">
+    <div div class="col-md-6">
+    <div class="row">
+        <h2 align="center">Функции</h2>
+        <div class="col-lg-12">
+          {% load static %}
+            <a href="{% url 'client' %}" class="rounded-circle"><img src="{% static '1.png' %}" alt="Generic placeholder image" width="150" height="150" id="pic1" style="margin-left: 70px;">
+          <h2 class="text-muted">Новый пользователь</h2></a>
+            <form action="{% url 'client_search' %}" method="get">
+          <input name="q" type="text" placeholder="Поиск клиентов...">
+            </form>
+        </div><!-- /.col-lg-4 -->
+        <hr>
+        <div class="col-lg-12">
+          {% load static %}
+          <a href="{% url 'ride' %}" class="rounded-circle"><img src="{% static '2.png' %}" alt="Generic placeholder image" width="150" height="150" id="pic2" style="margin-left: 70px;">
+          <h2 class="text-muted">Новая поездка</h2></a>
+            <form action="{% url 'ride_search' %}" method="get">
+          <input name="q" type="text" placeholder="Поиск поездок...">
+            </form>
+        </div><!-- /.col-lg-4 -->
+        <hr>
+        <div class="col-lg-12">
+          {% load static %}
+          <a href="{% url 'tech' %}" class="rounded-circle"><img class="rounded-circle" src="{% static '3.png' %}" alt="Generic placeholder image" width="150" height="150" id="pic3" style="margin-left: 70px;">
+          <h2 class="text-muted">Поломка</h2></a>
+            <form action="{% url 'tech_search' %}" method="get">
+          <input name="q" type="text" placeholder="Поиск поломок...">
+            </form>
+        </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+    </div>
+    {% if user.is_authenticated %}
+    <div class="col-md-6">
+        <h2>Сегодня</h2>
+        <div class="row">
+            <div class="col-md-12">
+              <h2 align="center">{{sum_day.total_sum}}</h2>
+              <h3 align="center">Оборот за день</h3>
+          </div>
+        </div>
+            <div class="row">
+          <div class="col-md-4">
+              <h3 align="center">{{cash_sum_day_iskra.total_sum}}</h3>
+              <h4 align="center">Оборот за день наличка Искра</h4>
+          </div>
+          <div class="col-md-4">
+              <h3 align="center">{{card_sum_day_iskra.total_sum}}</h3>
+              <h4 align="center">Оборот за день безнал Искра</h4>
+          </div>
+          <div class="col-md-4">
+              <h3 align="center">{{mixed_sum_day_iskra.total_sum}}</h3>
+              <h4 align="center">Оборот за день смешанный Искра</h4>
+          </div>
+            </div>
+        <hr>
+            <div class="row">
+            <div class="col-md-6">
+              <h3 align="center">{{cash_sum_day_nab.total_sum}}</h3>
+              <h4 align="center">Оборот за день наличка Набережная</h4>
+          </div>
+          <div class="col-md-6">
+              <h3 align="center">{{card_sum_day_nab.total_sum}}</h3>
+              <h4 align="center">Оборот за день безнал Набережная</h4>
+          </div>
+      </div>
+        <hr>
+      <div class="row">
+          <div class="col-md-6">
+              <h3 align="center">Искра за день</h3>
+        <p align="center">{{iskra_sum_day.total_sum}}</p>
+          </div>
+          <div class="col-md-6">
+              <h3 align="center">Набережная за день</h3>
+        <p align="center">{{nab_sum_day.total_sum}}</p>
+          </div>
+    </div>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock main_section %}
+
+{% block footer_section %}
+{% endblock footer_section %}

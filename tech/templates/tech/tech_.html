@@ -1,0 +1,30 @@
+{% extends 'main/navbar.html' %}
+{% block main_section %}
+<div class="container" >
+    {% if user.is_authenticated %}
+         <a href="{% url 'technew' %}" class="btn btn-outline-dark mr-2">Новая поломка</a>
+        {% for el in tech %}
+           <div class="media text-muted pt-3">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <strong class="d-block text-gray-dark">Имя: {{ el.tech }}</strong>
+                <b>Номер техники: </b>{{ el.tech_number }};
+                <b>Причина: </b>{{ el.reason }}
+                <b>Время: </b>{{ el.start_time }}
+                    <a href="{% url 'tech_detail' pk=el.id%}" class="btn btn-outline-dark mr-2">Подробнее</a>
+                </p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h2>ДОСТУП К ИНФОРМАЦИИ ЗАПРЕЩЕН</h2>
+    {% endif %}
+</div>
+{% endblock main_section %}
+
+
+{% block footer_section %}
+{% endblock footer_section %}
+
+
+
+
+

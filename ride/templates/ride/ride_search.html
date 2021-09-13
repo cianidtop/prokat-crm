@@ -1,0 +1,31 @@
+{% extends 'main/navbar.html' %}
+{% block main_section %}
+<div class="container" >
+    {% if user.is_authenticated %}
+ <a href="{% url 'ridenew' %}" class="btn btn-outline-dark mr-2">Новая поездка</a>
+        {% for el in object_list %}
+           <div class="media text-muted pt-3">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <strong class="d-block text-gray-dark">Имя: {{ el.phone_number }}</strong>
+                <b>Телефон: </b>{{ el.tech }};
+                <b>Время: </b>{{ el.start_time }};
+                <b>Техника:</b>{{ el.tech }};
+                <b>Номер техники:</b>{{ el.tech_number }}
+                     <a href="{% url 'ride_detail' pk=el.id%}" class="btn btn-outline-dark mr-2">Подробнее</a>
+                </p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h2>ДОСТУП К ИНФОРМАЦИИ ЗАПРЕЩЕН</h2>
+    {% endif %}
+</div>
+{% endblock main_section %}
+
+
+{% block footer_section %}
+{% endblock footer_section %}
+
+
+
+
+

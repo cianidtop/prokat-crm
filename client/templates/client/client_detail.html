@@ -1,0 +1,26 @@
+{% extends 'main/navbar.html' %}
+{% block main_section %}
+<div class="container" >
+    {% if user.is_authenticated %}
+           <div class="media text-muted pt-3">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <strong class="d-block text-black">Имя: {{ client.first_name }}</strong>
+                <b>Фамилия: </b>{{ client.last_name }}
+                <b>Телефон: </b>{{ client.phone_number }}
+                    <a href="{% url 'client_edit' pk=client.id%}" class="btn btn-outline-dark mr-2">Редактировать</a>
+                </p>
+           </div>
+    {% else %}
+        <h2>ДОСТУП К ИНФОРМАЦИИ ЗАПРЕЩЕН</h2>
+    {% endif %}
+</div>
+{% endblock main_section %}
+
+
+{% block footer_section %}
+{% endblock footer_section %}
+
+
+
+
+

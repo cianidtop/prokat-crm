@@ -1,0 +1,41 @@
+{% extends 'main/navbar.html' %}
+{% block main_section %}
+    {% if user.is_authenticated %}
+    <div class="container" >
+    <a href="{% url 'clientnew' %}" class="btn btn-outline-dark mr-2">Новый пользователь</a>
+        {% for el in client %}
+           <div class="media text-muted pt-3">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <strong class="d-block text-black">Имя: {{ el.first_name }}</strong>
+                <b>Фамилия: </b>{{ el.last_name }}
+                <b>Телефон: </b>{{ el.phone_number }}
+                <b>Бонус: </b>{{ el.bonus }}
+                <b>Комментарий: </b>{{ el.comment }}
+                     <a href="{% url 'client_detail' pk=el.id%}" class="btn btn-outline-dark mr-2">Подробнее</a>
+                </p>
+           </div>
+        {% endfor %}
+        <div class="pagination">
+    <span class="step-links">
+        {% if client.has_previous %}
+            <a href="?page=1">&laquo; Начало</a>
+            <a href="?page={{ client.previous_page_number }}">Предыдущая</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ client.number }} of {{ client.paginator.num_pages }}.
+        </span>
+
+        {% if client.has_next %}
+            <a href="?page={{ client.next_page_number }}">Следующая</a>
+            <a href="?page={{ client.paginator.num_pages }}">Последняя &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+    </div>
+    {% else %}
+        <h2>ДОСТУП К ИНФОРМАЦИИ ЗАПРЕЩЕН</h2>
+    {% endif %}
+{% endblock main_section %}
+{% block footer_section %}
+{% endblock footer_section %}
